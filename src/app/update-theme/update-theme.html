@@ -1,0 +1,15 @@
+<form>
+    <div>
+        <div [hidden]="ajout" >
+            <label>ID Théme</label> 
+            <input type="text" [(ngModel)]="theme.idThe" name="idTheme" class="form-control w-25"> 
+       </div>
+    </div>
+    <div> 
+        <label>Nom Théme</label> 
+        <input type="text" [(ngModel)]="theme.nomThe" name="nomTheme" class="form-control" placeholder="Entrez un nom de théme..."> </div>
+    <div class="mt-2"> 
+        <!--<button type="submit" [disabled]="!theme.nomThe" class="btn btn-success" (click)="saveTheme()">Ajouter</button> -->
+        <button type="submit" [disabled]="!theme.nomThe" class="btn btn-success" (click)="saveTheme()" >{{ajout ? 'Ajouter' : 'Modifier'}} </button>
+    </div>
+</form>

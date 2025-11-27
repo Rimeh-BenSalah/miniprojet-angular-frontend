@@ -1,0 +1,128 @@
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Modifier un Livre :</h2>
+
+      <form [formGroup]="myForm">
+        <div class="form-group mb-3">
+          <label>ID Livre :</label>
+          <input
+            type="number"
+            name="idLivre"
+            class="form-control"
+            formControlName="idLivre"
+            [(ngModel)]="currentLivre.idLivre"
+            readonly
+          />
+        </div>
+
+        <div class="form-group mb-3">
+          <label>Nom du Livre :</label>
+          <input
+            type="text"
+            name="nomLivre"
+            class="form-control"
+            formControlName="nomLivre"
+            [(ngModel)]="currentLivre.nomLivre"
+          />
+        </div>
+        @if (myForm.controls['nomLivre'].hasError('required') && myForm.controls['nomLivre'].touched) {
+          <span class="text-danger">Le nom du livre est obligatoire</span>
+        }
+
+        <div class="form-group mb-3">
+          <label>Auteur :</label>
+          <input
+            type="text"
+            name="auteur"
+            class="form-control"
+            formControlName="auteur"
+            [(ngModel)]="currentLivre.auteur"
+          />
+        </div>
+        @if (myForm.controls['auteur'].hasError('required') && myForm.controls['auteur'].touched) {
+          <span class="text-danger">L'auteur est obligatoire</span>
+        }
+        @if (myForm.controls['auteur'].hasError('minlength') && myForm.controls['auteur'].touched) {
+          <span class="text-danger">L'auteur doit contenir au moins 4 caractères</span>
+        }
+        <div class="form-group mb-3">
+          <label>Prix Livre :</label>
+          <input
+            type="number"
+            name="prixLivre"
+            class="form-control"
+            formControlName="prixLivre"
+            [(ngModel)]="currentLivre.prixLivre"
+          />
+        </div>
+        @if (myForm.controls['prixLivre'].hasError('required') && myForm.controls['prixLivre'].touched) {
+          <span class="text-danger">Le prix du livre est obligatoire</span>
+        }
+         @if (myForm.controls['prixLivre'].hasError('min') && myForm.controls['prixLivre'].touched) {
+          <span class="text-danger">Le prix est invalide</span>
+        }
+        <div class="form-group mb-3">
+          <label>Date de publication :</label>
+          <input
+            type="date"
+            name="Datedepublication"
+            class="form-control"
+            formControlName="Datedepublication"
+            [(ngModel)]="currentLivre.Datedepublication"
+          />
+        </div>
+        @if (myForm.controls['Datedepublication'].hasError('required') && myForm.controls['Datedepublication'].touched) {
+          <span class="text-danger">La date de publication est obligatoire</span>
+        }
+
+        <div class="form-group mb-3">
+          <label>Email :</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            formControlName="email"
+            [(ngModel)]="currentLivre.email"
+          />
+        </div>
+        @if (myForm.controls['email'].hasError('required') && myForm.controls['email'].touched) {
+          <span class="text-danger">L'email est obligatoire</span>
+        }
+        @if (myForm.controls['email'].hasError('email') && myForm.controls['email'].touched) {
+          <span class="text-danger">L'email n'est pas valide</span>
+        }
+
+        <div class="form-group mb-3">
+          <label>Thème :</label>
+          <select
+            class="form-control"
+            id="idThe"
+            name="idThe"
+            formControlName="idThe"
+            [(ngModel)]="updatedTheId"
+          >
+            <option value="" disabled selected>-- Sélectionner un thème --</option>
+            @for (the of themes; track the.idThe) {
+              <option [value]="the.idThe">{{ the.nomThe }}</option>
+            }
+          </select>
+        </div>
+        @if (myForm.controls['idThe'].hasError('required') && myForm.controls['idThe'].touched) {
+          <span class="text-danger">Le thème est obligatoire</span>
+        }
+
+        <div class="text-center mt-4">
+          <button
+            type="button"
+            class="btn btn-success px-4"
+            [disabled]="myForm.invalid"
+            (click)="updateLivre()"
+          >
+            Modifier
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
